@@ -1,0 +1,97 @@
+
+MainUI:
+
+<MainUI>:
+    MDBoxLayout:
+        orientation: "vertical"
+        MDBoxLayout:
+            orientation: 'vertical'
+            MDLabel:
+                text: root.num_of_tracks
+                size_hint_y:None
+                halign: 'center'
+                height: self.texture_size[1]
+                theme_text_color: "Secondary"
+
+            FitImage:
+                id: img_holder
+                source: root.thumbnail_url
+                texture:self.texture
+                keep_ratio: True
+                allow_stretch: False
+                anim_loop: 0
+                anim_delay: 0.25
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: ['10dp','30dp','10dp','50dp']
+            MDLabel:
+                id: title_label
+                halign: 'center'
+                text: root.song_title
+                size_hint_y: None
+                height: self.texture_size[1]
+            MDLabel:
+                text: root.song_pos
+                size_hint_y:None
+                halign: 'center'
+                height: self.texture_size[1]
+                theme_text_color: "Secondary"
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                MDBoxLayout:
+                    # orientation: 'horizontal'                   
+                    MDSlider:
+                        id: progress
+                        min: 0
+                        max: 100
+                        value: root.slider_value
+                        on_value: root.slider_value_change(self)
+                        cursor_size:('20dp','20dp')
+                        background_width: '20dp'
+                        value_track_color: [1,0,0,1]
+                        value_track: True
+                        color: [1,0,0,1] #app.theme_cls.accent_color
+                        hint: True
+                    
+                MDBoxLayout:
+                    AnchorLayout:
+                        MyIcon:
+                            id: restart_btn
+                            icon: "restart"
+                            on_press: root.restart_click()
+                    AnchorLayout:
+                        MyIcon:
+                            id: previous_btn
+                            icon: "skip-previous-outline"
+                            on_press: root.previous_click()
+                    AnchorLayout:
+                        MyIcon:
+                            id: play_btn
+                            icon: root.icon_type
+                            on_press: root.play_click()
+                    AnchorLayout:
+                        MyIcon:
+                            id: next_btn
+                            icon: "skip-next-outline"
+                            on_press: root.next_click()                                       
+                    AnchorLayout:
+                        MyIcon:
+                            id: list_view_btn
+                            icon: root.shuffle_icon
+                            on_press: root.shuffle_click()
+                #     AnchorLayout:
+                #         MyIcon:
+                #             id: volume_btn
+                #             icon: root.volume_icon
+                #             on_press: root.volume_click()
+<MyIcon@MDFloatingActionButton>:
+    size_hint: None,None
+    user_font_size: '40sp'
+    # theme_text_color: 'Custom'
+    # md_bg_color: app.theme_cls.accent_dark
+    md_bg_color: [67/255, 138/255, 132/255,1]
+    size: ('28dp','28dp')
+
+
+
